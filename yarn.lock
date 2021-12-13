@@ -745,7 +745,7 @@
   dependencies:
     "@standardnotes/auth" "^3.8.1"
 
-"@standardnotes/time@^1.0.4":
+"@standardnotes/time@1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@standardnotes/time/-/time-1.0.4.tgz#a4c02089fec64e3d43ba67d004b939058c195f84"
   integrity sha512-yA2owcZKJaaEW7s7qI6jBUZopMC1sgGVPiv+fUPJ1eBiB6HJKpV/iG8mKiiJw5/aVOXVcAclB2JhRaiIlEGSWA==

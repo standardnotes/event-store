@@ -77,6 +77,8 @@ export class ContainerConfigLoader {
       region: env.get('AWS_REGION', true),
     }))
 
+    container.bind<TimerInterface>(TYPES.Timer).toConstantValue(new Timer())
+
     // env vars
     container.bind(TYPES.SQS_AWS_REGION).toConstantValue(env.get('SQS_AWS_REGION'))
     container.bind(TYPES.SQS_QUEUE_URL).toConstantValue(env.get('SQS_QUEUE_URL'))
@@ -109,8 +111,6 @@ export class ContainerConfigLoader {
         container.get(TYPES.DomainEventMessageHandler)
       )
     )
-
-    container.bind<TimerInterface>(TYPES.Timer).toConstantValue(new Timer())
 
     return container
   }
