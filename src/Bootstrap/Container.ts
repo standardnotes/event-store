@@ -22,7 +22,7 @@ export class ContainerConfigLoader {
 
     container.bind<AWS.SQS>(TYPES.SQS).toConstantValue(new AWS.SQS({
       apiVersion: 'latest',
-      region: env.get('SQS_AWS_REGION', true),
+      region: env.get('SQS_AWS_REGION'),
     }))
 
     const connection: Connection = await createConnection({
@@ -71,11 +71,6 @@ export class ContainerConfigLoader {
       ],
     })
     container.bind<winston.Logger>(TYPES.Logger).toConstantValue(logger)
-
-    container.bind<AWS.SQS>(TYPES.SQS).toConstantValue(new AWS.SQS({
-      apiVersion: 'latest',
-      region: env.get('AWS_REGION', true),
-    }))
 
     container.bind<TimerInterface>(TYPES.Timer).toConstantValue(new Timer())
 
