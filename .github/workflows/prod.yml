@@ -111,16 +111,7 @@ jobs:
         with:
           accountId: ${{ secrets.NEW_RELIC_ACCOUNT_ID }}
           apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
-          applicationId: ${{ secrets.NEW_RELIC_APPLICATION_ID_WEB_PROD }}
-          revision: "${{ github.sha }}"
-          description: "Automated Deployment via Github Actions"
-          user: "${{ github.actor }}"
-      - name: Create New Relic deployment marker for Worker
-        uses: newrelic/deployment-marker-action@v1
-        with:
-          accountId: ${{ secrets.NEW_RELIC_ACCOUNT_ID }}
-          apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
-          applicationId: ${{ secrets.NEW_RELIC_APPLICATION_ID_WORKER_PROD }}
+          applicationId: ${{ secrets.NEW_RELIC_APPLICATION_ID_PROD }}
           revision: "${{ github.sha }}"
           description: "Automated Deployment via Github Actions"
           user: "${{ github.actor }}"
