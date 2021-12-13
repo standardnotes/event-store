@@ -46,6 +46,7 @@ describe('EventHandler', () => {
       timestamp: 1,
       userIdentifier: '1-2-3',
       userIdentifierType: 'uuid',
+      eventPayload: '{"foo":"bar"}',
     })
   })
 })

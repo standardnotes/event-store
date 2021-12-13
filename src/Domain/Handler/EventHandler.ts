@@ -18,6 +18,7 @@ export class EventHandler implements DomainEventHandlerInterface {
     storedEvent.eventType = event.type
     storedEvent.userIdentifier = event.meta.correlation.userIdentifier
     storedEvent.userIdentifierType = event.meta.correlation.userIdentifierType
+    storedEvent.eventPayload = JSON.stringify(event.payload)
     storedEvent.timestamp = this.timer.convertStringDateToMicroseconds(event.createdAt.toString())
 
     await this.db.getRepository(Event).save(storedEvent)
