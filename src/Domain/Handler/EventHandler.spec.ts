@@ -1,17 +1,22 @@
+import 'reflect-metadata'
+
 import { TimerInterface } from '@standardnotes/time'
 import { Connection, Repository } from 'typeorm'
 import { EventHandler } from './EventHandler'
 import { Event } from '../Event/Event'
+import { Logger } from 'winston'
 import { DomainEventInterface } from '@standardnotes/domain-events'
 
 describe('EventHandler', () => {
   let timer: TimerInterface
   let db: Connection
   let repository: Repository<Event>
+  let logger: Logger
 
   const createHandler = () => new EventHandler(
     timer,
-    db
+    db,
+    logger
   )
 
   beforeEach(() => {
@@ -23,6 +28,9 @@ describe('EventHandler', () => {
 
     db = {} as jest.Mocked<Connection>
     db.getRepository = jest.fn().mockReturnValue(repository)
+
+    logger = {} as jest.Mocked<Logger>
+    logger.debug = jest.fn()
   })
 
   it('should persist as event in the store', async () => {
