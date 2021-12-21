@@ -18,13 +18,17 @@ export class EventHandler implements DomainEventHandlerInterface {
   async handle(event: DomainEventInterface): Promise<void> {
     this.logger.debug('Handling event: %O', event)
 
-    const storedEvent = new Event()
-    storedEvent.eventType = event.type
-    storedEvent.userIdentifier = event.meta.correlation.userIdentifier
-    storedEvent.userIdentifierType = event.meta.correlation.userIdentifierType
-    storedEvent.eventPayload = JSON.stringify(event.payload)
-    storedEvent.timestamp = this.timer.convertStringDateToMicroseconds(event.createdAt.toString())
+    try {
+      const storedEvent = new Event()
+      storedEvent.eventType = event.type
+      storedEvent.userIdentifier = event.meta.correlation.userIdentifier
+      storedEvent.userIdentifierType = event.meta.correlation.userIdentifierType
+      storedEvent.eventPayload = JSON.stringify(event.payload)
+      storedEvent.timestamp = this.timer.convertStringDateToMicroseconds(event.createdAt.toString())
 
-    await this.db.getRepository(Event).save(storedEvent)
+      await this.db.getRepository(Event).save(storedEvent)
+    } catch (error) {
+      this.logger.error('Could not store event %O in the event store: %s', event, error.message)
+    }
   }
 }
