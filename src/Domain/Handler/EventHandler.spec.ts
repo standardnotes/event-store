@@ -31,6 +31,7 @@ describe('EventHandler', () => {
 
     logger = {} as jest.Mocked<Logger>
     logger.debug = jest.fn()
+    logger.error = jest.fn()
   })
 
   it('should persist as event in the store', async () => {
@@ -56,5 +57,32 @@ describe('EventHandler', () => {
       userIdentifierType: 'uuid',
       eventPayload: '{"foo":"bar"}',
     })
+  })
+
+  it('should inform about failure to saven the event in the store', async () => {
+    const event = {
+      type: 'test',
+      createdAt: new Date(2),
+      meta: {
+        correlation: {
+          userIdentifier: '1-2-3',
+          userIdentifierType: 'uuid',
+        },
+      },
+      payload: {
+        foo: 'bar',
+      },
+    } as jest.Mocked<DomainEventInterface>
+    repository.save = jest.fn().mockImplementation(() => {
+      throw new Error('Ooops')
+    })
+
+    await createHandler().handle(event)
+
+    expect(logger.error).toHaveBeenCalledWith(
+      'Could not store event %O in the event store: %s',
+      event,
+      'Ooops'
+    )
   })
 })
