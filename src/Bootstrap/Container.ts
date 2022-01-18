@@ -92,6 +92,7 @@ export class ContainerConfigLoader {
       ['EXTENSION_KEY_GRANTED', container.get(TYPES.EventHandler)],
       ['SUBSCRIPTION_REASSIGNED', container.get(TYPES.EventHandler)],
       ['USER_EMAIL_CHANGED', container.get(TYPES.EventHandler)],
+      ['FILE_UPLOADED', container.get(TYPES.EventHandler)],
     ])
 
     container.bind<DomainEventMessageHandlerInterface>(TYPES.DomainEventMessageHandler).toConstantValue(
