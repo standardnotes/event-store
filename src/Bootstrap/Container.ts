@@ -93,6 +93,9 @@ export class ContainerConfigLoader {
       ['SUBSCRIPTION_REASSIGNED', container.get(TYPES.EventHandler)],
       ['USER_EMAIL_CHANGED', container.get(TYPES.EventHandler)],
       ['FILE_UPLOADED', container.get(TYPES.EventHandler)],
+      ['LISTED_ACCOUNT_REQUESTED', container.get(TYPES.EventHandler)],
+      ['LISTED_ACCOUNT_CREATED', container.get(TYPES.EventHandler)],
+      ['LISTED_ACCOUNT_DELETED', container.get(TYPES.EventHandler)],
     ])
 
     container.bind<DomainEventMessageHandlerInterface>(TYPES.DomainEventMessageHandler).toConstantValue(
