@@ -88,15 +88,18 @@ export class ContainerConfigLoader {
       ['SUBSCRIPTION_CANCELLED', container.get(TYPES.EventHandler)],
       ['SUBSCRIPTION_RENEWED', container.get(TYPES.EventHandler)],
       ['SUBSCRIPTION_REFUNDED', container.get(TYPES.EventHandler)],
+      ['SUBSCRIPTION_SYNC_REQUESTED', container.get(TYPES.EventHandler)],
       ['SUBSCRIPTION_EXPIRED', container.get(TYPES.EventHandler)],
       ['EXTENSION_KEY_GRANTED', container.get(TYPES.EventHandler)],
       ['SUBSCRIPTION_REASSIGNED', container.get(TYPES.EventHandler)],
       ['USER_EMAIL_CHANGED', container.get(TYPES.EventHandler)],
       ['FILE_UPLOADED', container.get(TYPES.EventHandler)],
+      ['FILE_REMOVED', container.get(TYPES.EventHandler)],
       ['LISTED_ACCOUNT_REQUESTED', container.get(TYPES.EventHandler)],
       ['LISTED_ACCOUNT_CREATED', container.get(TYPES.EventHandler)],
       ['LISTED_ACCOUNT_DELETED', container.get(TYPES.EventHandler)],
       ['USER_SIGNED_IN', container.get(TYPES.EventHandler)],
+      ['SHARED_SUBSCRIPTION_INVITATION_CREATED', container.get(TYPES.EventHandler)],
     ])
 
     container.bind<DomainEventMessageHandlerInterface>(TYPES.DomainEventMessageHandler).toConstantValue(
